@@ -22,10 +22,14 @@ width, height = img.shape
 # img[0][2][0]=255
 # img[0][2][1]=255
 
+# Black Strip
+
 # for i in range(0, 855):
 #     for j in range(0, 3):
 #         for k in range(0, 25):
 #             img[k][i][j]=0
+
+# Brighten Pixels 
 
 for i in range(0, width-1):
     for j in range(0, height-1):
