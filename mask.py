@@ -1,27 +1,35 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jul 26 18:07:41 2023
-
-@author: bmiit202006100110040
-"""
-
-# import required libraries
 import cv2
-import numpy as np
 
-# Read an input image as a gray image
-img = cv2.imread('pt.jpg')
+def add_image_center(main_image_path, image_to_add_path, output_path):
+    # Read the main image and image to be added
+    main_image = cv2.imread(main_image_path)
+    image_to_add = cv2.imread(image_to_add_path)
 
-# create a mask
-mask = np.zeros(img.shape[:2], np.uint8)
-mask[100:250, 150:450] = 255
+    if main_image is None or image_to_add is None:
+        print("Error: Unable to read one or both of the images.")
+        return
 
-# compute the bitwise AND using the mask
-masked_img = cv2.bitwise_and(img,img,mask = mask)
+    # Get the dimensions of the main image and image to be added
+    main_height, main_width, _ = main_image.shape
+    add_height, add_width, _ = image_to_add.shape
 
-# display the mask, and the output image
-cv2.imshow('Mask',mask)
-cv2.imshow('Masked Image',masked_img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    # Calculate the position to place the image at the center
+    center_x = (main_width - add_width) // 2
+    center_y = (main_height - add_height) // 2
+
+    # Overlay the image at the center
+    main_image[center_y:center_y+add_height, center_x:center_x+add_width] = image_to_add
+
+    # Save the result
+    cv2.imwrite(output_path, main_image)
+
+    # Display the result (optional)
+    cv2.imshow("Result", main_image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main_image_path = "temp.jpg"
+    image_to_add_path = "py.png"
+    output_path = "new.jpg"
+    add_image_center(main_image_path, image_to_add_path, output_path)

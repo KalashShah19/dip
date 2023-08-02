@@ -33,7 +33,7 @@ width, height = img.shape
 
 for i in range(0, width-1):
     for j in range(0, height-1):
-        if(img[i][j] < 150):
+        if(img[i][j] <= 150):
             img[i][j]+=50
 
 
