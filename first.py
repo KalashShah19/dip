@@ -2,8 +2,6 @@ import cv2
 
 img = cv2.imread("py.jpg",0)
 
-#img = img + 1
-
 height, width = img.shape[:-1]
 resolution = "Image Resolution = " + str(height) + " x " + str(width)
 cv2.imshow(resolution, img)
