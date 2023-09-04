@@ -1,0 +1,4 @@
+1. Improve quality of images if required.
+2. Demonstrate intensity slicing on any one image.
+3. Improve visual quality of image 3 and 4.
+4. Convert image 5 from gray to binary. (do not convert to binary directly at the time or reading)
